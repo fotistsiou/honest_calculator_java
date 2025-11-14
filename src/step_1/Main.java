@@ -1,5 +1,7 @@
 package step_1;
 
+import java.util.Scanner;
+
 /**
  * Data collection
  * ---------------
@@ -20,4 +22,35 @@ package step_1;
  */
 
 public class Main {
+    static final String msg_0 = "Enter an equation";
+    static final String msg_1 = "Do you even know what numbers are? Stay focused!";
+    static final String msg_2 = "Yes ... an interesting math operation. You've slept through all classes, haven't you?";
+    static final String NUMBER_REGEX = "\\d+(\\.\\d+)?";
+    static final String OPERATION_REGEX = "+-*/";
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            System.out.println(Main.msg_0);
+            String input = sc.nextLine();
+
+            String[] parts = input.split("\\s+");
+            String x = parts[0];
+            String operation = parts[1];
+            String y = parts[2];
+
+            if (x.matches(Main.NUMBER_REGEX) && y.matches(Main.NUMBER_REGEX)) {
+                if (Main.OPERATION_REGEX.contains(operation)) {
+                    break;
+                } else {
+                    System.out.println(msg_2);
+                }
+            } else {
+                System.out.println(Main.msg_1);
+            }
+        }
+
+        sc.close();
+    }
 }
